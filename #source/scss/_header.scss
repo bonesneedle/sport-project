@@ -1,0 +1,138 @@
+.header {
+	z-index: 50;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	// margin: 40px 0 0px 0;
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #0e1313c9;
+		z-index: 11;
+	}
+	&__container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 10px 20px;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	&__logo-block {
+		z-index: 11;
+		grid-column: 2/3;
+	}
+	&__burger {
+		display: none;
+		z-index: 11;
+		@media (max-width: 767px) {
+			display: block;
+			position: relative;
+			width: 30px;
+			height: 20px;
+			span {
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translate(0, -50%);
+				width: 100%;
+				height: 2px;
+				background-color: #3ea2d8;
+				transition-duration: 0.5s;
+			}
+			&::after,
+			&::before {
+				content: "";
+				position: absolute;
+				width: 100%;
+				height: 2px;
+				background-color: #3ea2d8;
+				transition-duration: 0.5s;
+				transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.575);
+			}
+			&::after {
+				bottom: 0;
+			}
+			&::before {
+				top: 0;
+			}
+		}
+		&.active {
+			width: 30px;
+			height: 30px;
+		}
+		&.active::before {
+			transform: rotate(45deg) translateY(-50%);
+			top: 50%;
+		}
+		&.active::after {
+			transform: rotate(-45deg) translateY(50%);
+			bottom: 50%;
+		}
+		&.active span {
+			transform: scale(0);
+		}
+	}
+	&__menu {
+		z-index: 11;
+		grid-column: 3/4;
+		justify-self: end;
+		align-self: center;
+		@media (max-width: 767px) {
+			position: fixed;
+			z-index: 10;
+			top: -100%;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #346c73;
+			background-image: url("../img/backgrounds/cat.jpg");
+			background-position: center;
+			background-size: cover;
+			padding: 80px 0 0 0;
+			transition-duration: 0.5s;
+
+			&.active {
+				top: 0;
+			}
+		}
+	}
+
+	&__list {
+		display: flex;
+		align-items: center;
+		column-gap: 80px;
+		@media (max-width: 767px) {
+			position: relative;
+			display: block;
+			text-align: center;
+			li {
+				margin: 0 0 20px 0;
+				&:last-child {
+					margin: 0px 0px 0px 0px;
+				}
+			}
+		}
+	}
+
+	&__link {
+		font-size: 19.2px;
+		line-height: 1.2;
+		color: #ffffff;
+		font-weight: 500;
+		text-transform: uppercase;
+		@media (max-width: 767px) {
+			font-size: 30px;
+		}
+	}
+
+	&__link-active {
+		color: #3ea2d8;
+	}
+}
